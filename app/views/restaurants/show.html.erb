@@ -1,0 +1,24 @@
+<header>
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1><%= @restaurant.name %></h1>
+    <p><%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %></p>
+    <p><%= link_to "Back to all the restaurants", restaurants_path, class: "btn btn-primary" %></p>
+  </div>
+</header>
+<div class="container">
+  <% if flash[:notice].present? %>
+    <p style="color: green; text-align:center; border: .5px solid green; border-radius: .5rem; background-color: rgba(0, 255, 0, 0.1); width:50%; margin: 1rem auto; padding: .5rem 0"><%= notice %></p>
+  <% end %>
+  <p>Address: <%= @restaurant.address %></p>
+  <p>Phone number: <%= @restaurant.phone_number %></p>
+  <p>Cuisine: <%= @restaurant.category %></p>
+  <p>Reviews:</p>
+    <ul class="p-0">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="border">
+          <p>Comment: <%= review.content %> </p>
+          <p>Rating: <%= review.rating %>/5 </p>
+        </li>
+      <% end %>
+    </ul>
+</div>
